@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Pack do
+RSpec.describe Group do
   describe "Validation" do
     it {should validate_presence_of :name}
     it {should validate_presence_of :description}
