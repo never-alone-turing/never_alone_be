@@ -1,0 +1,15 @@
+current directory: /Users/lessenden/turing/4module/projects/never_alone_be/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
+/Users/lessenden/.rbenv/versions/2.6.3/bin/ruby -I /Users/lessenden/.rbenv/versions/2.6.3/lib/ruby/2.6.0 -r ./siteconf20201217-43626-7pqjel.rb extconf.rb
+creating Makefile
+
+current directory: /Users/lessenden/turing/4module/projects/never_alone_be/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/lessenden/turing/4module/projects/never_alone_be/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/lessenden/turing/4module/projects/never_alone_be/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.5.1/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20201217-43626-kdkk80/bootsnap
