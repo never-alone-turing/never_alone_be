@@ -80,7 +80,10 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    graphql (1.11.6)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.9.18)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
@@ -198,7 +201,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara
-  graphql
+  graphiql-rails
+  graphql (= 1.9.18)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
@@ -213,7 +217,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.6.3p0
 
 BUNDLED WITH
    2.1.2
