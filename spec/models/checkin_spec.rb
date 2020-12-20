@@ -5,12 +5,14 @@ describe Checkin, type: :model do
     it { should validate_presence_of :checkin_type }
     it { should validate_presence_of :time }
     it { should validate_presence_of :response }
+    it { should validate_presence_of :user_id }
+    it { should validate_presence_of :group_id }
   end
 
-  # describe "relationships" do
-  #   it {should belong_to :user}
-  #   it {should belong_to :pack}
-  # end
+  describe "relationships" do
+    it {should belong_to :user}
+    it {should belong_to :group}
+  end
 
   describe "checkin_types" do
     it "can be created with a type of 'wellness' " do
