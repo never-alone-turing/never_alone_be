@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_012419) do
   end
 
   create_table "group_users", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
+    t.bigint "user_id"
+    t.bigint "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
