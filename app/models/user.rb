@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
   has_many :checkins
 
-  enum role: ['caretaker', 'lone_ranger']
+  enum role: ['user', 'caretaker', 'lone_ranger']
 end
