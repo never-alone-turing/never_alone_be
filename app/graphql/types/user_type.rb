@@ -5,5 +5,7 @@ module Types
     field :email, String, null: false
     field :avatar, String, null: true
     field :phone, String, null: true
+
+    field :role, Enums::Role, null: false
   end
 end
