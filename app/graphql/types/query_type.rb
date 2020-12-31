@@ -5,7 +5,7 @@ module Types
     null: false,
     description: "Returns a list of existing users"
 
-    field :user, Types::UserType, null: false do
+    field :find_user_by_id, Types::UserType, null: false do
       description 'Find a user by ID'
       argument :id, ID, required: true
     end
@@ -15,7 +15,7 @@ module Types
       User.all
     end
 
-    def user(id:)
+    def find_user_by_id(id:)
       User.find(id)
     end
   end
