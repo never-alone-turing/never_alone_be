@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_215428) do
+ActiveRecord::Schema.define(version: 2020_12_20_023041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: :cascade do |t|
+    t.integer "checkin_type"
+    t.datetime "time"
+    t.boolean "response"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_checkins_on_group_id"
+    t.index ["user_id"], name: "index_checkins_on_user_id"
+  end
+
+  create_table "group_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -29,4 +50,8 @@ ActiveRecord::Schema.define(version: 2020_12_19_215428) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "checkins", "groups"
+  add_foreign_key "checkins", "users"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
 end
