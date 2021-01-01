@@ -18,6 +18,8 @@ group :development, :test do
   gem 'capybara'
   gem 'pry'
   gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
 end
