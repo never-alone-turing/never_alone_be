@@ -6,8 +6,3 @@ require 'graphql/rake_task'
 require_relative 'config/application'
 
 Rails.application.load_tasks
-
-GraphQL::RakeTask.new(
-  load_context: ->(_task) { { GRAPHQL_RAKE_TASK: true } },
-  schema_name: 'NeverAloneBeSchema', # this needs to be your generated schema class name
-)
