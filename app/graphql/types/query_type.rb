@@ -2,7 +2,7 @@ module Types
   class QueryType < Types::BaseObject
 
     field :all_users, [Types::UserType], null: false, description: 'Returns a list of all existing users'
-    field :user, Types::UserType, null: false do
+    field :find_user_by_id, Types::UserType, null: false do
       description 'Return a single user by id'
       argument :id, ID, required: true
     end
@@ -11,7 +11,7 @@ module Types
       User.all
     end
 
-    def user(id:)
+    def find_user_by_id(id:)
       User.find(id)
     end
   end
