@@ -8,9 +8,11 @@ RSpec.describe Types::QueryType do
 
       post graphql_path, params: { query: query(id: group1.id) }
       result = JSON.parse(response.body)
-    
+
       expect(result.count).to eq(1)
       expect(result["data"]["findGroupById"]).to have_key("id")
+      expect(result["data"]["findGroupById"]).to have_key("name")
+      expect(result["data"]["findGroupById"]).to have_key("description")
     end
   end
 
