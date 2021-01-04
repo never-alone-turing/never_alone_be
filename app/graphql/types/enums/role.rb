@@ -5,7 +5,7 @@ module Types
 
       value('user', 'general user role')
       value('caretaker', "user designated to monitor a 'long_ranger' user role")
-      value('lone_ranger', "user being monitored by 'caretaker'")
+      value('receiver', "user being monitored by 'caretaker'")
     end
   end
 end
