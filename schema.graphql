@@ -1,0 +1,47 @@
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type Query {
+  """
+  Returns a list of existing users
+  """
+  allUsers: [User!]!
+
+  """
+  Find a user by ID
+  """
+  findUserById(id: ID!): User!
+}
+
+"""
+All user roles
+"""
+enum Role {
+  """
+  user designated to monitor a 'long_ranger' user role
+  """
+  caretaker
+
+  """
+  user being monitored by 'caretaker'
+  """
+  lone_ranger
+
+  """
+  general user role
+  """
+  user
+}
+
+type User {
+  avatar: String
+  email: String!
+  id: ID!
+  phone: String
+  role: Role!
+  username: String!
+}
