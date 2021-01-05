@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_172512) do
+ActiveRecord::Schema.define(version: 2021_01_05_184748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkins", force: :cascade do |t|
-    t.integer "checkin_type"
+    t.integer "category"
     t.datetime "time"
     t.boolean "response"
     t.datetime "created_at", precision: 6, null: false
