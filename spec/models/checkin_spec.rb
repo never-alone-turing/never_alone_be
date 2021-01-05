@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Checkin, type: :model do
   describe "validations" do
-    it { should validate_presence_of :checkin_type }
+    it { should validate_presence_of :category }
     it { should validate_presence_of :time }
     it { should validate_presence_of :response }
     it { should validate_presence_of :user_id }
@@ -18,29 +18,29 @@ describe Checkin, type: :model do
 
   describe "checkin_types" do
     it "can be created with a type of 'wellness' " do
-      checkin_1 = Checkin.new({checkin_type: 0, time: DateTime.now})
-      expect(checkin_1.checkin_type).to eq("wellness")
+      checkin_1 = Checkin.new({category: 0, time: DateTime.now})
+      expect(checkin_1.category).to eq("wellness")
     end
 
     it "can be created with a type of 'medication' " do
-      checkin_1 = Checkin.new({checkin_type: 1, time: DateTime.now})
-      expect(checkin_1.checkin_type).to eq("medication")
+      checkin_1 = Checkin.new({category: 1, time: DateTime.now})
+      expect(checkin_1.category).to eq("medication")
     end
   end
 
   describe "response" do
     it "defaults to a response of 'nil' " do
-      checkin_1 = Checkin.new({checkin_type: 0, time: DateTime.now})
+      checkin_1 = Checkin.new({category: 0, time: DateTime.now})
       expect(checkin_1.response).to eq(nil)
     end
 
     it "can have a response of 'true' " do
-      checkin_1 = Checkin.new({checkin_type: 0, time: DateTime.now, response: true})
+      checkin_1 = Checkin.new({category: 0, time: DateTime.now, response: true})
       expect(checkin_1.response).to eq(true)
     end
 
     it "can have a response of 'false' " do
-      checkin_1 = Checkin.new({checkin_type: 0, time: DateTime.now, response: false})
+      checkin_1 = Checkin.new({category: 0, time: DateTime.now, response: false})
       expect(checkin_1.response).to eq(false)
     end
   end
