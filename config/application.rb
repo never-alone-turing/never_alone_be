@@ -41,6 +41,6 @@ module NeverAloneBe
       g.helper          false
       g.channel         assets: false
     end
-    
+    config.assets.initialize_on_precompile = false
   end
 end
