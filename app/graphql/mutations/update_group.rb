@@ -7,12 +7,11 @@ module Mutations
     field :group, Types::GroupType, null: true
     field :errors, [String], null: false
 
-    def resolve(id:, name: nil, description: nil)
+    def resolve(id:, **argument)
       group = Group.find(id)
       if group.update!(
-        name: name,
-        description: description
-        )
+        argument
+      )
         { group: group }
       else
         { errors: group.errors.full_messages }
