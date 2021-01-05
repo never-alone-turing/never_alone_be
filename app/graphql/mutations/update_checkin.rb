@@ -7,12 +7,13 @@ module Mutations
     argument :user_id, ID, required: true
     argument :group_id, ID, required: true
     argument :window, String, required: true
+    argument :category, String, required: false
 
 
     field :checkin, Types::CheckinType, null: true
     field :errors, [String], null: false
 
-    def resolve(time: nil, response: nil, user_id: nil, group_id: nil, window: nil)
+    def resolve(time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: category)
       checkin = Checkin.find(id)
         if checkin.update!(
         checkin_type: checkin_type,
@@ -20,7 +21,9 @@ module Mutations
         response: response,
         user_id: user_id,
         group_id: group_id,
-        window: window
+        window: window,
+        category: category
+
         )
         { checkin: checkin }
       else
