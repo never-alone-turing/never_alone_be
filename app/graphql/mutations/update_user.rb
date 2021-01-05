@@ -1,8 +1,8 @@
 module Mutations
   class UpdateUser < BaseMutation
     argument :id, ID, required: true
-    argument :username, String, required: true
-    argument :email, String, required: true
+    argument :username, String, required: false
+    argument :email, String, required: false
     argument :avatar, String, required: false
     argument :phone, String, required: false
     argument :role, String, required: false
@@ -10,14 +10,10 @@ module Mutations
     field :user, Types::UserType, null: true
     field :errors, [String], null: false
 
-    def resolve(id:, username: nil, email: nil, avatar: nil, phone: nil, role: nil)
+    def resolve(id:, **argument)
       user = User.find(id)
       if user.update!(
-        username: username,
-        email: email,
-        avatar: avatar,
-        phone: phone,
-        role: role
+        argument
         )
         { user: user }
       else
