@@ -2,6 +2,7 @@ module Types
   class QueryType < Types::BaseObject
     field :all_users, [Types::UserType], null: false,
     description: "Returns a list of existing users"
+
     field :find_user_by_id, Types::UserType, null: false do
       description 'Find a user by ID'
       argument :id, ID, required: true
@@ -10,6 +11,7 @@ module Types
     field :all_groups, [Types::GroupType], null: false do
       description 'Find all existing groups'
     end
+
     field :find_group_by_id, Types::GroupType, null: false do
       description 'Find a group by id'
       argument :id, ID, required: true
@@ -19,13 +21,18 @@ module Types
       description 'Find all checkins for user'
       argument :user_id, ID, required: true
     end
+
     field :all_checkins, [Types::CheckinType], null: false,
     description: "Returns a list of existing checkins"
 
     field :all_group_users, [Types::GroupUserType], null: false do
       description 'Find all existing group_users'
     end
-
+    
+    field :find_group_user_by_id, Types::GroupUserType, null: false do
+      description 'Find a group_user by id'
+      argument :id, ID, required: true
+    end
     #---- Resolvers
     def all_users
       User.all
@@ -41,6 +48,7 @@ module Types
 
     def find_group_by_id(id:)
       Group.find(id)
+    end
 
     def all_checkins
       Checkin.all
@@ -52,7 +60,10 @@ module Types
 
     def all_group_users
       GroupUser.all
-    end 
+    end
+
+    def find_group_user_by_id(id:)
+      GroupUser.find(id)
+    end
   end
-end
 end
