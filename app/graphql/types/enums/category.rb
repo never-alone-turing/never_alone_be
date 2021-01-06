@@ -3,8 +3,8 @@ module Types
     class Category < Types::BaseEnum
       description "All types of checkins"
 
-      value('wellness', 'A general check-in')
-      value('medication', 'A reminder to take medications')
+      value('Wellness', 'A general check-in')
+      value('Medication', 'A reminder to take medications')
     end
   end
 end
