@@ -5,6 +5,6 @@ module Types
     field :description, String, null: false
     field :group_users, [Types::GroupUserType], null: false
     field :users, [Types::UserType], null: false
-    #field :checkins, [Types::CheckinType], null: false
+    field :checkins, [Types::CheckinType], null: false
   end
 end
