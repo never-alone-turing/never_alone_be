@@ -6,8 +6,8 @@ require 'graphql/rake_task'
 require_relative 'config/application'
 
 Rails.application.load_tasks
-Rake::Task["default"].clear
+Rake::Task["assets:precompile"].clear
 
-task :default do
+task :assets do
   Rake::Task["assets:precompile"].invoke
 end
