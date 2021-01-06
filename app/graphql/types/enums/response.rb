@@ -3,7 +3,7 @@ module Types
     class Response < Types::BaseEnum
       description "Response options"
 
-      value('Default', 'Window has not passed')
+      value('Pending', 'Window has not passed')
       value('Answered', 'Everything is OK!')
       value('None', 'Button was not pushed')
     end
