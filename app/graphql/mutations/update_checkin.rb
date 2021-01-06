@@ -1,29 +1,22 @@
 module Mutations
   class UpdateCheckin < BaseMutation
     argument :id, ID, required: true
-    argument :checkin_type, String, required: true
-    argument :time, String, required: true
+    argument :time, String, required: false
     argument :response, String, required: false
-    argument :user_id, ID, required: true
-    argument :group_id, ID, required: true
-    argument :window, String, required: true
+    argument :user_id, ID, required: false
+    argument :group_id, ID, required: false
+    argument :window, String, required: false
     argument :category, String, required: false
 
 
     field :checkin, Types::CheckinType, null: true
     field :errors, [String], null: false
 
-    def resolve(time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: category)
+    # def resolve(id: nil, time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: nil)
+    def resolve(id:, **argument)
       checkin = Checkin.find(id)
         if checkin.update!(
-        checkin_type: checkin_type,
-        time: time,
-        response: response,
-        user_id: user_id,
-        group_id: group_id,
-        window: window,
-        category: category
-
+          argument
         )
         { checkin: checkin }
       else
