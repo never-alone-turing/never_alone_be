@@ -7,6 +7,8 @@ module Types
     field :phone, String, null: true
 
     field :checkin, [Types::CheckinType], null: false
+    field :group_users, [Types::GroupUserType], null: true
+    field :groups, [Types::GroupType], null: true
     field :role, Enums::Role, null: false
   end
 end
