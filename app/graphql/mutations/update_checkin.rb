@@ -12,7 +12,6 @@ module Mutations
     field :checkin, Types::CheckinType, null: true
     field :errors, [String], null: false
 
-    # def resolve(id: nil, time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: nil)
     def resolve(id:, **argument)
       checkin = Checkin.find(id)
         if checkin.update!(
