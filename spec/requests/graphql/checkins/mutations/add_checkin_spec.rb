@@ -13,8 +13,8 @@ RSpec.describe "Add Checkin" do
     mutation_string = <<-GRAPHQL
     mutation{
 	    addCheckin(input:{
-        response: "true",
-        category: "wellness",
+        response: "Pending",
+        category: "Wellness",
         time: "2021-01-04T21:12:19Z",
         window: "2021-01-04T21:12:19Z",
         userId: "#{@user1.id}",
@@ -39,6 +39,6 @@ RSpec.describe "Add Checkin" do
       expect(result).to have_key("data")
       expect(result["data"]).to have_key("addCheckin")
       expect(result["data"]["addCheckin"].length).to eq(1)
-      expect(result).to eq({"data"=>{"addCheckin"=>{"checkin"=>{"response"=>true, "category"=>"wellness", "time"=>"2021-01-04T21:12:19Z", "window"=>"2021-01-04T21:12:19Z", "userId"=>"#{@user1.id}", "groupId"=>"#{@group.id}"}}}})
+      expect(result).to eq({"data"=>{"addCheckin"=>{"checkin"=>{"response"=>"Pending", "category"=>"Wellness", "time"=>"2021-01-04T21:12:19Z", "window"=>"2021-01-04T21:12:19Z", "userId"=>"#{@user1.id}", "groupId"=>"#{@group.id}"}}}})
   end
 end
