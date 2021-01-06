@@ -12,7 +12,7 @@ module Mutations
     field :checkin, Types::CheckinType, null: true
     field :errors, [String], null: false
 
-    def resolve(time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: category)
+    def resolve(time: nil, response: nil, user_id: nil, group_id: nil, window: nil, category: nil)
       checkin = Checkin.create!(
         time: time,
         response: response,
