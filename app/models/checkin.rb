@@ -5,6 +5,7 @@ class Checkin < ApplicationRecord
   belongs_to :user
   belongs_to :group
 
-  enum category: %w(wellness medication)
+  enum category: %w(Wellness Medication)
+  enum response: %w(Pending Answered None)
 
 end
