@@ -5,8 +5,9 @@ module Types
     field :window, GraphQL::Types::ISO8601DateTime, null: false
     field :user_id, ID, null: false
     field :group_id, ID, null: false
+    field :name, String, null: false 
 
-    field :category, Enums::Category, null: false
+    field :category, Enums::Category, null: true
     field :response, Enums::Response, null: false
 
   end
