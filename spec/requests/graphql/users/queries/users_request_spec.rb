@@ -28,8 +28,8 @@ RSpec.describe "Users Query" do
     expect(result['data']).to be_a(Hash)
     expect(result['data']['allUsers']).to be_an(Array)
     expect(result['data']['allUsers'].first(3)).to eq([
-    {"id"=>"283", "role"=>"user", "username"=>"Frankie Buckridge1"},
-    {"id"=>"284", "role"=>"caretaker", "username"=>"Jonathon Boehm2"},
-    {"id"=>"285", "role"=>"receiver", "username"=>"Brianne McGlynn Ret.3"}])
+    {"id"=>"#{user_1.id}", "role"=>"user", "username"=>"Frankie Buckridge1"},
+    {"id"=>"#{user_2.id}", "role"=>"caretaker", "username"=>"Jonathon Boehm2"},
+    {"id"=>"#{user_3.id}", "role"=>"receiver", "username"=>"Brianne McGlynn Ret.3"}])
   end
 end
