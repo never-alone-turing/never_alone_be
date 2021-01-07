@@ -28,7 +28,7 @@ module Types
     field :all_group_users, [Types::GroupUserType], null: false do
       description 'Find all existing group_users'
     end
-    
+
     field :find_group_user_by_id, Types::GroupUserType, null: false do
       description 'Find a group_user by id'
       argument :id, ID, required: true
