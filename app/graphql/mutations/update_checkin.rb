@@ -7,6 +7,8 @@ module Mutations
     argument :group_id, ID, required: false
     argument :window, String, required: false
     argument :category, String, required: false
+    argument :name, String, required: false
+
 
 
     field :checkin, Types::CheckinType, null: true
