@@ -9,5 +9,8 @@ module Types
     field :add_checkin, mutation: Mutations::AddCheckin, description: "Add a new checkin for a user"
     field :update_checkin, mutation: Mutations::UpdateCheckin, description: "Update an existing checkin"
     field :destroy_checkin, mutation: Mutations::DestroyCheckin, description: "Destroy an existing checkin"
+    field :add_group_user, mutation: Mutations::AddGroupUser, description: "Add a new group user"
+    field :update_group_user, mutation: Mutations::UpdateGroupUser, description: "Update an existing group_user"
+
   end
 end
