@@ -11,6 +11,8 @@ RSpec.describe Types::QueryType do
       expect(result.count).to eq(1)
 
       expect(result["data"]["findGroupUserById"]).to have_key("id")
+      expect(result["data"]["findGroupUserById"]).to have_key("userId")
+      expect(result["data"]["findGroupUserById"]).to have_key("groupId")
     end
   end
 
@@ -19,6 +21,8 @@ RSpec.describe Types::QueryType do
     query {
       findGroupUserById(id: #{id}) {
         id
+        userId
+        groupId
       }
     }
     GQL
