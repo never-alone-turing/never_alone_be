@@ -6,9 +6,9 @@ RSpec.describe "Checkin Query" do
     @user1 = User.create(username: "Herb Gutmann1", email: "user-1000@email.com", phone: "(346) 733-0084", role: 'user', avatar: "https://robohash.org/atquenisimolestias.png?size=300x300&set=set1")
     @user2 = User.create(username: "Other Gutmann1", email: "asd@email.com", phone: "(346) 733-0084", role: 'user', avatar: "https://robohash.org/atquenisimolestias.png?size=300x300&set=set1")
     @group = Group.create(name: "Group1", description: "it is a group")
-    @checkin1 = Checkin.create(category:0, time: DateTime.now, response: 0, user_id: @user1.id, group_id: @group.id, window: DateTime.now)
-    @checkin2 = Checkin.create(category:1, time: DateTime.now, response: 1, user_id: @user1.id, group_id: @group.id, window: DateTime.now)
-    @checkin3 = Checkin.create(category:0, time: DateTime.now, response: 2, user_id: @user2.id, group_id: @group.id, window: DateTime.now)
+    @checkin1 = Checkin.create(category:0, time: DateTime.now, response: 0, user_id: @user1.id, group_id: @group.id, window: DateTime.now, name: "checkin1")
+    @checkin2 = Checkin.create(category:1, time: DateTime.now, response: 1, user_id: @user1.id, group_id: @group.id, window: DateTime.now, name: "checkin2")
+    @checkin3 = Checkin.create(category:0, time: DateTime.now, response: 2, user_id: @user2.id, group_id: @group.id, window: DateTime.now, name: "checkin3")
   end
 
   it "Find all checkins" do
@@ -22,13 +22,14 @@ RSpec.describe "Checkin Query" do
                 time
                 window
                 groupId
+                name
               }
             }
     GRAPHQL
 
     post graphql_path, params: {query: query_string}
     result = JSON.parse(response.body)
-    # binding.pry 
+
     expect(result).to have_key("data")
     expect(result["data"]).to have_key("allCheckins")
     expect(result["data"]["allCheckins"].length).to eq(3)
@@ -39,10 +40,7 @@ RSpec.describe "Checkin Query" do
     expect(result["data"]["allCheckins"][0]).to have_key("groupId")
     expect(result["data"]["allCheckins"][0]).to have_key("time")
     expect(result["data"]["allCheckins"][0]).to have_key("window")
-
-    # expect(result["data"]["allCheckins"][0]).to eq({"id"=>"#{@checkin1.id}", "response"=>true, "category"=>"wellness", "userId"=>"#{@user1.id}", "time"=>"#{@checkin1.time}", "window"=>"#{@checkin1.time}", "groupId"=>"#{@group.id}"})
-    # expect(result["data"]["allCheckins"][1]).to eq({"id"=>"#{@checkin2.id}", "response"=>true, "category"=>"medication", "userId"=>"#{@user1.id}", "time"=>"#{@checkin2.time}", "window"=>"#{@checkin2.time}", "groupId"=>"#{@group.id}"})
-    # expect(result["data"]["allCheckins"][2]).to eq({"id"=>"#{@checkin3.id}", "response"=>true, "category"=>"wellness", "userId"=>"#{@user2.id}", "time"=>"#{@checkin3.time}", "window"=>"#{@checkin3.time}", "groupId"=>"#{@group.id}"})
+    expect(result["data"]["allCheckins"][0]).to have_key("name")
   end
 
   it "Find all checkins for a single user" do

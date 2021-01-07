@@ -25,6 +25,15 @@ module Types
     field :all_checkins, [Types::CheckinType], null: false,
     description: "Returns a list of existing checkins"
 
+    field :all_groups, [Types::GroupType], null: false do
+      description 'Find all existing groups'
+    end
+
+    field :find_group_by_id, Types::GroupType, null: false do
+      description 'Find a group by id'
+      argument :id, ID, required: true
+    end
+
     field :all_group_users, [Types::GroupUserType], null: false do
       description 'Find all existing group_users'
     end
@@ -65,5 +74,14 @@ module Types
     def find_group_user_by_id(id:)
       GroupUser.find(id)
     end
+
+    def all_groups
+      Group.all
+    end
+
+    def find_group_by_id(id:)
+      Group.find(id)
+    end
+    
   end
 end
