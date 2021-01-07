@@ -9,6 +9,5 @@ module Types
 
     field :category, Enums::Category, null: true
     field :response, Enums::Response, null: false
-
   end
 end
