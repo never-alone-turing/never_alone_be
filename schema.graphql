@@ -22,14 +22,14 @@ All user roles
 """
 enum Role {
   """
-  user designated to monitor a 'long_ranger' user role
+  user designated to monitor a 'receiver' user role
   """
   caretaker
 
   """
   user being monitored by 'caretaker'
   """
-  lone_ranger
+  receiver
 
   """
   general user role

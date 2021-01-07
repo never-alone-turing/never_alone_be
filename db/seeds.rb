@@ -10,3 +10,7 @@ FactoryBot.create_list(:user, 25)
 @checkin1 = Checkin.create(category:0, time: DateTime.now, response: 0, user_id: @user1.id, group_id: @group.id, window: DateTime.now)
 @checkin2 = Checkin.create(category:1, time: DateTime.now, response: 1, user_id: @user1.id, group_id: @group.id, window: DateTime.now)
 @checkin3 = Checkin.create(category:0, time: DateTime.now, response: 2, user_id: @user2.id, group_id: @group.id, window: DateTime.now)
+Group.destroy_all
+
+FactoryBot.create_list(:user, 25)
+FactoryBot.create_list(:group, 4)
