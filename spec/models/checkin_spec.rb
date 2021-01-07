@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Checkin, type: :model do
   describe "validations" do
-    it { should validate_presence_of :category }
+    it { should validate_presence_of :name }
     it { should validate_presence_of :time }
     it { should validate_presence_of :response }
     it { should validate_presence_of :user_id }
