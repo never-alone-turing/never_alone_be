@@ -6,6 +6,7 @@ module Types
     field :avatar, String, null: true
     field :phone, String, null: true
 
+    field :checkin, [Types::CheckinType], null: false
     field :role, Enums::Role, null: false
   end
 end
