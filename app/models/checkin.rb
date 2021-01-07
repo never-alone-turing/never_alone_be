@@ -1,6 +1,6 @@
 class Checkin < ApplicationRecord
 
-  validates_presence_of :category, :time, :response, :user_id, :group_id, :window
+  validates_presence_of :name, :time, :response, :user_id, :group_id, :window
 
   belongs_to :user
   belongs_to :group
