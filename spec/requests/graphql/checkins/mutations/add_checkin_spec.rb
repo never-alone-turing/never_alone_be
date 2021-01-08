@@ -48,12 +48,6 @@ RSpec.describe "Add Checkin" do
     mutation_string = <<-GRAPHQL
     mutation{
 	    addCheckin(input:{
-        response: "Pending",
-        category: "Wellness",
-        time: "2021-01-04T21:12:19Z",
-        window: "2021-01-04T21:12:19Z",
-        userId: "#{@user1.id}",
-        groupId: "#{@group.id}"
         }
         ){
           checkin{
@@ -70,7 +64,13 @@ RSpec.describe "Add Checkin" do
 
     post graphql_path, params: {query: mutation_string}
     result = JSON.parse(response.body)
+
     expect(result).to have_key("errors")
-    expect(result["errors"].first["message"]).to eq("Argument 'name' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"].first["message"]).to eq("Argument 'time' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"][1]["message"]).to eq("Argument 'response' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"][2]["message"]).to eq("Argument 'userId' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"][3]["message"]).to eq("Argument 'groupId' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"][4]["message"]).to eq("Argument 'window' on InputObject 'AddCheckinInput' is required. Expected type String!")
+    expect(result["errors"][5]["message"]).to eq("Argument 'name' on InputObject 'AddCheckinInput' is required. Expected type String!")
   end
 end
