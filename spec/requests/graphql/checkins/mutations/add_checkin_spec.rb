@@ -43,4 +43,34 @@ RSpec.describe "Add Checkin" do
       expect(result["data"]["addCheckin"].length).to eq(1)
       expect(result).to eq({"data"=>{"addCheckin"=>{"checkin"=>{"response"=>"Pending", "category"=>"Wellness", "time"=>"2021-01-04T21:12:19Z", "window"=>"2021-01-04T21:12:19Z", "userId"=>"#{@user1.id}", "groupId"=>"#{@group.id}", "name"=>"checkin1"}}}})
   end
+
+  it "has a sad path error" do
+    mutation_string = <<-GRAPHQL
+    mutation{
+	    addCheckin(input:{
+        response: "Pending",
+        category: "Wellness",
+        time: "2021-01-04T21:12:19Z",
+        window: "2021-01-04T21:12:19Z",
+        userId: "#{@user1.id}",
+        groupId: "#{@group.id}"
+        }
+        ){
+          checkin{
+            response
+            category
+            time
+            window
+            userId
+            groupId
+          }
+        }
+      }
+      GRAPHQL
+
+    post graphql_path, params: {query: mutation_string}
+    result = JSON.parse(response.body)
+    expect(result).to have_key("errors")
+    expect(result["errors"].first["message"]).to eq("Argument 'name' on InputObject 'AddCheckinInput' is required. Expected type String!")
+  end
 end
