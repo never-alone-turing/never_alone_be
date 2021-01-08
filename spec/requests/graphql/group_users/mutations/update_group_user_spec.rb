@@ -9,7 +9,7 @@ RSpec.describe Types::MutationType do
       @gu1 = create(:group_user, user_id: @user1.id)
       @gu2 = create(:group_user, user_id: @user2.id)
 
-      post graphql_path, params: { query: query(@gu1.id) }
+      post graphql_path, params: { query: query1(@gu1.id) }
       result = JSON.parse(response.body)
 
       expect(result["data"]).to have_key("updateGroupUser")
@@ -20,7 +20,7 @@ RSpec.describe Types::MutationType do
     end
   end
 
-  def query(id)
+  def query1(id)
     <<~GQL
     mutation {
       updateGroupUser(
@@ -28,6 +28,40 @@ RSpec.describe Types::MutationType do
           id: "#{@gu1.id}"
           userId: "#{@user2.id}",
           groupId: "#{@group1.id}"
+        }
+      )
+      {
+        groupUser {
+          id
+          userId
+          groupId
+        }
+      }
+    }
+    GQL
+  end
+
+  it 'throws an error if a field is missing' do
+    @user3 = create(:user)
+    @user4 = create(:user)
+    @group2 = create(:group)
+    @gu3 = create(:group_user, user_id: @user3.id)
+    @gu4 = create(:group_user, user_id: @user4.id)
+
+    post graphql_path, params: { query: query2(@gu4.id) }
+    result = JSON.parse(response.body)
+
+    expect(result["errors"][0]).to have_key("message")
+    expect(result["errors"][0]["message"]).to eq("Argument 'id' on InputObject 'UpdateGroupUserInput' is required. Expected type ID!")
+  end
+
+  def query2(id)
+    <<~GQL
+    mutation {
+      updateGroupUser(
+        input: {
+          userId: "#{@user4.id}",
+          groupId: "#{@group2.id}"
         }
       )
       {
