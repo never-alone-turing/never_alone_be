@@ -6,8 +6,6 @@ RSpec.describe Types::MutationType do
       @user1 = create(:user)
       @user2 = create(:user)
       @group1 = create(:group)
-      @gu1 = create(:group_user, user_id: @user1.id)
-      @gu2 = create(:group_user, user_id: @user2.id)
 
       post graphql_path, params: { query: query }
       result = JSON.parse(response.body)
@@ -24,6 +22,36 @@ RSpec.describe Types::MutationType do
         input: {
           userId: "#{@user1.id}"
           groupId: "#{@group1.id}"
+        }
+      )
+      {
+        groupUser {
+          userId
+          groupId
+        }
+      }
+    }
+    GQL
+  end
+
+  it 'throws an error if a field is missing' do
+    @user1 = create(:user)
+    @user2 = create(:user)
+    @group1 = create(:group)
+
+    post graphql_path, params: { query: query2 }
+    result = JSON.parse(response.body)
+
+    expect(result).to have_key("errors")
+  end
+
+  def query2
+    <<~GQL
+    mutation {
+      addGroupUser(
+        input: {
+          userId:
+          groupId:
         }
       )
       {

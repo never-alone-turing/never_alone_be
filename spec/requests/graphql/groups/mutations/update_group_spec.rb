@@ -39,7 +39,7 @@ RSpec.describe Types::MutationType do
     GQL
   end
 
-  it 'throws an error if a field is missing' do
+  it 'throws an error if the id field is missing' do
     group = create(:group)
 
     post graphql_path, params: { query: query2(group.id) }
@@ -47,7 +47,7 @@ RSpec.describe Types::MutationType do
 
     expect(result).to have_key("errors")
     expect(result["errors"][0]).to have_key("message")
-    expect(result["errors"][0]["message"]).to eq( "Argument 'name' on InputObject 'UpdateGroupInput' is required. Expected type String!")
+    expect(result["errors"][0]["message"]).to eq( "Argument 'id' on InputObject 'UpdateGroupInput' is required. Expected type ID!")
   end
 
   def query2(id)
@@ -55,13 +55,11 @@ RSpec.describe Types::MutationType do
     mutation {
       updateGroup(
         input: {
-          id: #{id},
           description: "We're watching you. All the time"
         }
         )
         {
         group {
-          id
           description
         }
       }
