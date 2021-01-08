@@ -47,7 +47,6 @@ RSpec.describe "Update checkin" do
       mutation{
         updateCheckin(
           input:{
-            di: "#{@checkin1.id}",
           }
         )
         {
@@ -64,6 +63,7 @@ RSpec.describe "Update checkin" do
 
     post graphql_path, params: {query: mutation_string}
     result = JSON.parse(response.body)
+
     expect(result).to have_key("errors")
     expect(result["errors"].first["message"]).to eq("Argument 'id' on InputObject 'UpdateCheckinInput' is required. Expected type ID!")
   end
