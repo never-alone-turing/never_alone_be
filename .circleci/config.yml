@@ -7,7 +7,7 @@ jobs:
       CC_TEST_REPORTER_ID: "fa6a83f203cb81046eab607216bf8ca3e54b62c19805bb365ebe77fe6e69130f"
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
-    working_directory: ~/repo
+    working_directory: ~/never_alone_be
     executor: ruby/default
     steps:
       - checkout
