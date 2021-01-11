@@ -9,7 +9,9 @@ jobs:
       - image: circleci/ruby:2.6.3-stretch-node
       - image: circleci/postgres:latest
         environment:
-            POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_HOST_AUTH_METHOD: trust
+          - DATABASE_URL=postgres://postgres@localhost/never-alone-test
+          - RAILS_ENV=test
     working_directory: ~/never_alone_be
     executor: ruby/default
     steps:
@@ -20,8 +22,9 @@ jobs:
       - ruby/bundle-install
       - run:
           name: Database setup
-          command: |
+          command: | 
             bin/rails db:setup
+            
       - run:
           name: Setup Code Climate test-reporter
           command: |
