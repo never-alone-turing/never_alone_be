@@ -17,7 +17,8 @@ jobs:
       - ruby/bundle-install
       - run:
           name: Database setup
-          bin/rails db:setup
+          command: |
+            bin/rails db:setup
       - run:
           name: Setup Code Climate test-reporter
           command: |
