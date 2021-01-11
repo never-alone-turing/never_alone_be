@@ -10,8 +10,8 @@ jobs:
       - image: circleci/postgres:latest
         environment:
           POSTGRES_HOST_AUTH_METHOD: trust
-          - DATABASE_URL=postgres://postgres@localhost/never-alone-test
-          - RAILS_ENV=test
+          DATABASE_URL: postgres://postgres@localhost/never-alone-test
+          RAILS_ENV: test
     working_directory: ~/never_alone_be
     executor: ruby/default
     steps:
