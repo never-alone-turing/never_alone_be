@@ -5,14 +5,13 @@ jobs:
   build:
     environment:
       CC_TEST_REPORTER_ID: "fa6a83f203cb81046eab607216bf8ca3e54b62c19805bb365ebe77fe6e69130f"
+      DATABASE_URL: postgres://postgres@localhost/never-alone-test
+      RAILS_ENV: test
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
       - image: circleci/postgres:latest
         environment:
           POSTGRES_HOST_AUTH_METHOD: trust
-    environment:
-        DATABASE_URL=postgres://postgres@localhost/never-alone-test
-        RAILS_ENV=test
     working_directory: ~/never_alone_be
     executor: ruby/default
     steps:
