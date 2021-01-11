@@ -18,7 +18,9 @@ jobs:
           name: Which bundler?
           command: gem install bundler:2.1.4
       - ruby/bundle-install
-      - run: sudo apt install -y postgresql-client --fix-missing || true
+      - run: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+            apt-get update && apt-get install -y postgresql-client
       - run:
           name: Database setup
           command: | 
