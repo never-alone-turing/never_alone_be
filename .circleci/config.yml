@@ -16,6 +16,9 @@ jobs:
           command: gem install bundler:2.1.4
       - ruby/bundle-install
       - run:
+          name: Database setup
+          bin/rails db:setup
+      - run:
           name: Setup Code Climate test-reporter
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
