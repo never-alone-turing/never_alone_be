@@ -1,8 +1,8 @@
 module Mutations
   class UpdateGroup < BaseMutation
     argument :id, ID, required: true
-    argument :name, String, required: true
-    argument :description, String, required: true
+    argument :name, String, required: false
+    argument :description, String, required: false
 
     field :group, Types::GroupType, null: true
     field :errors, [String], null: false
