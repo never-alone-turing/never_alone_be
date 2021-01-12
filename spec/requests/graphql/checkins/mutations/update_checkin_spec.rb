@@ -11,7 +11,7 @@ RSpec.describe "Update checkin" do
     @checkin3 = Checkin.create(category:0, time: DateTime.now, response: 2, user_id: @user2.id, group_id: @group.id, window: DateTime.now, name: "checkin3")
   end
 
-  it "Update aa checkin" do
+  it "Update a checkin" do
     mutation_string = <<-GRAPHQL
       mutation{
         updateCheckin(
@@ -40,5 +40,31 @@ RSpec.describe "Update checkin" do
 
     expect(result).to have_key("data")
     expect(result).to eq({"data"=>{"updateCheckin"=>{"checkin"=>{"category"=>"Medication", "groupId"=>"#{@group.id}", "id"=>"#{@checkin1.id}", "response"=>"Answered", "userId"=>"#{@user1.id}"}}}})
+  end
+
+  it "has a sad path error" do
+    mutation_string = <<-GRAPHQL
+      mutation{
+        updateCheckin(
+          input:{
+          }
+        )
+        {
+          checkin{
+            id
+            response
+            category
+            userId
+            groupId
+          }
+        }
+      }
+    GRAPHQL
+
+    post graphql_path, params: {query: mutation_string}
+    result = JSON.parse(response.body)
+
+    expect(result).to have_key("errors")
+    expect(result["errors"].first["message"]).to eq("Argument 'id' on InputObject 'UpdateCheckinInput' is required. Expected type ID!")
   end
 end

@@ -21,6 +21,10 @@ SimpleCov.start do
   add_filter 'app/jobs'
   add_filter 'app/mailers'
   add_filter 'app/models/application_record.rb'
+  add_filter 'app/graphql/types/base_interface.rb'
+  add_filter 'app/graphql/types/base_scalar.rb'
+  add_filter 'app/graphql/types/base_union.rb'
+  add_filter 'app/controllers/graphql_controller.rb'
 end
 
 RSpec.configure do |config|
