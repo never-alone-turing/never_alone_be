@@ -135,32 +135,32 @@ In the command line you should see something like this:<br/>
 
 ```ruby
 Table user {
-  id: integer
-  username: string
-  role: enum
-  email: string
-  avatar: string
+  id: integer,
+  username: string,
+  role: enum,
+  email: string,
+  avatar: string,
   phone: string
 }
 
 Table user_group {
-  user_id: integer
+  user_id: integer,
   group_id: integer
 }
 
 Table group {
-  id: integer
-  name: string
+  id: integer,
+  name: string,
   description: string
 }
 
 Table checkin {
-  id: integer
-  name: string
-  time: datetime
-  window: datetime
-  user_id: integer
-  group_id: integer
+  id: integer,
+  name: string,
+  time: datetime,
+  window: datetime,
+  user_id: integer,
+  group_id: integer,
   response: enum
 }
 ```
