@@ -200,6 +200,7 @@ GEM
     simplecov (0.19.1)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
+    simplecov-badge (2.0.2)
     simplecov-html (0.12.3)
     spoon (0.0.6)
       ffi
@@ -255,6 +256,7 @@ DEPENDENCIES
   rspec-rails
   shoulda-matchers
   simplecov
+  simplecov-badge
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

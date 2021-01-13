@@ -15,8 +15,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'simplecov'
-SimpleCov.start 'rails'
-SimpleCov.start do
+SimpleCov.start 'rails' do
+  require 'simplecov-badge'
   add_filter 'app/channels'
   add_filter 'app/jobs'
   add_filter 'app/mailers'
@@ -25,6 +25,15 @@ SimpleCov.start do
   add_filter 'app/graphql/types/base_scalar.rb'
   add_filter 'app/graphql/types/base_union.rb'
   add_filter 'app/controllers/graphql_controller.rb'
+  # configure any options you want for SimpleCov::Formatter::BadgeFormatter
+	SimpleCov::Formatter::BadgeFormatter.generate_groups = false
+	SimpleCov::Formatter::BadgeFormatter.strength_foreground = true
+	SimpleCov::Formatter::BadgeFormatter.timestamp = true
+	# call SimpleCov::Formatter::BadgeFormatter after the normal HTMLFormatter
+	SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+		SimpleCov::Formatter::HTMLFormatter,
+		SimpleCov::Formatter::BadgeFormatter,
+	]
 end
 
 RSpec.configure do |config|
